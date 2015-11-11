@@ -19,6 +19,6 @@ LOCAL_C_INCLUDES := \
 	$(call include-path-for, audio-effects) \
 	$(call include-path-for, audio-utils)
 
-LOCAL_CFLAGS += -fvisibility=hidden
+LOCAL_CFLAGS += -fvisibility=hidden -fno-strict-aliasing
 
 include $(BUILD_SHARED_LIBRARY)
