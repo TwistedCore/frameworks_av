@@ -34,6 +34,8 @@ LOCAL_CFLAGS += -Werror
 LOCAL_CLANG := true
 LOCAL_SANITIZE := signed-integer-overflow
 
+LOCAL_CFLAGS += -fno-strict-aliasing
+
 include $(BUILD_STATIC_LIBRARY)
 
 ################################################################################
