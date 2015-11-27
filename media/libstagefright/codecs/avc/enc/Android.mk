@@ -36,6 +36,8 @@ LOCAL_SANITIZE := signed-integer-overflow
 
 LOCAL_CFLAGS += -fno-strict-aliasing
 
+LOCAL_CFLAGS += -fno-strict-aliasing
+
 include $(BUILD_STATIC_LIBRARY)
 
 ################################################################################
