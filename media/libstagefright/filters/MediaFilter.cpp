@@ -18,7 +18,6 @@
 #define LOG_TAG "MediaFilter"
 
 #include <inttypes.h>
-#include <utils/Trace.h>
 
 #include <binder/MemoryDealer.h>
 

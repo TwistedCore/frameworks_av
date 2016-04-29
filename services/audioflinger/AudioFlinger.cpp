@@ -29,7 +29,6 @@
 #include <binder/IPCThreadState.h>
 #include <binder/IServiceManager.h>
 #include <utils/Log.h>
-#include <utils/Trace.h>
 #include <binder/Parcel.h>
 #include <memunreachable/memunreachable.h>
 #include <utils/String16.h>
