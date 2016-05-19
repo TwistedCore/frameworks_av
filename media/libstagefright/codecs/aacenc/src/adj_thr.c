@@ -75,13 +75,13 @@ static void calcThreshExp(Word32 thrExp[MAX_CHANNELS][MAX_GROUPED_SFB],
   Word32 *pthrExp = NULL, *psfbThre;
   for (ch=0; ch<nChannels; ch++) {
     PSY_OUT_CHANNEL *psyOutChan = &psyOutChannel[ch];
-	 for(sfbGrp = 0; sfbGrp < psyOutChan->sfbCnt; sfbGrp+= psyOutChan->sfbPerGroup)
-	  pthrExp = &(thrExp[ch][sfbGrp]);
-	  psfbThre = psyOutChan->sfbThreshold + sfbGrp;
-	  for (sfb=0; sfb<psyOutChan->maxSfbPerGroup; sfb++) {
-		*pthrExp = rsqrt(rsqrt(*psfbThre,INT_BITS),INT_BITS);
-		pthrExp++; psfbThre++;
-      }
+    for(sfbGrp = 0; sfbGrp < psyOutChan->sfbCnt; sfbGrp+= psyOutChan->sfbPerGroup)
+      pthrExp = &(thrExp[ch][sfbGrp]);
+    psfbThre = psyOutChan->sfbThreshold + sfbGrp;
+    for (sfb=0; sfb<psyOutChan->maxSfbPerGroup; sfb++) {
+      *pthrExp = rsqrt(rsqrt(*psfbThre,INT_BITS),INT_BITS);
+      pthrExp++; psfbThre++;
+    }
   }
 }
 
