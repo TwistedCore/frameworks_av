@@ -1974,6 +1974,12 @@ status_t ACodec::configureCodec(
                 if (canDoAdaptivePlayback &&
                         msg->findInt32("max-width", &maxWidth) &&
                         msg->findInt32("max-height", &maxHeight)) {
+                    if (!maxWidth || !maxHeight) {
+                        ALOGE("No width or height, assuming worst case 1080p");
+                        maxWidth = 1920;
+                        maxHeight = 1080;
+                    }
+
                     ALOGV("[%s] prepareForAdaptivePlayback(%dx%d)",
                             mComponentName.c_str(), maxWidth, maxHeight);
 
@@ -3279,6 +3285,11 @@ status_t ACodec::setupVideoDecoder(
     if (!msg->findInt32("width", &width)
             || !msg->findInt32("height", &height)) {
         return INVALID_OPERATION;
+    }
+    if (!width || !height) {
+        ALOGE("No width or height, assuming worst case 1080p");
+        width = 1920;
+        height = 1080;
     }
 
     OMX_VIDEO_CODINGTYPE compressionFormat;
