@@ -337,6 +337,11 @@ status_t AudioFlinger::EffectModule::configure()
     channelMask = thread->channelMask();
     mConfig.outputCfg.channels = channelMask;
 
+    if (channelMask == AUDIO_CHANNEL_OUT_MONO) {
+        mConfig.outputCfg.channels = AUDIO_CHANNEL_OUT_STEREO;
+        ALOGV("Overriding effect output as STEREO");
+    }
+
     if ((mDescriptor.flags & EFFECT_FLAG_TYPE_MASK) == EFFECT_FLAG_TYPE_AUXILIARY) {
         mConfig.inputCfg.channels = AUDIO_CHANNEL_OUT_MONO;
     } else {
@@ -345,8 +350,7 @@ status_t AudioFlinger::EffectModule::configure()
         // For offloaded tracks consider mono output as stereo for proper effect initialization
         if (channelMask == AUDIO_CHANNEL_OUT_MONO) {
             mConfig.inputCfg.channels = AUDIO_CHANNEL_OUT_STEREO;
-            mConfig.outputCfg.channels = AUDIO_CHANNEL_OUT_STEREO;
-            ALOGV("Overriding effect input and output as STEREO");
+            ALOGV("Overriding effect input as STEREO");
         }
     }
 
